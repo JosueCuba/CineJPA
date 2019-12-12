@@ -8,7 +8,7 @@ import modelo.entidad.Cartelera;
 import modelo.entidad.Pelicula;
 import modelo.entidad.Sala;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-12T14:51:30")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-12T15:22:49")
 @StaticMetamodel(Funcion.class)
 public class Funcion_ { 
 

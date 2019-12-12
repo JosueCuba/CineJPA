@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import modelo.entidad.Pelicula;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-12T14:51:31")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-12-12T15:22:49")
 @StaticMetamodel(Genero.class)
 public class Genero_ { 
 

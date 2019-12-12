@@ -52,7 +52,7 @@ public class Sala implements Serializable {
     @Column(name = "NOMSAL")
     private String nomsal;
     @Column(name = "ESTSAL")
-    private Character estsal;
+    private Character estsal = 'A';
     @Column(name = "CAPACSAL")
     private BigInteger capacsal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idsal")
