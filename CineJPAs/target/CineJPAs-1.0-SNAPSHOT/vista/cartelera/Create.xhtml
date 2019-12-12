@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CarteleraCreateDlg" widgetVar="CarteleraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateCarteleraTitle}">
+            <h:form id="CarteleraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{carteleraController.selected != null}">
+                       <p:outputLabel value="#{vista.CreateCarteleraLabel_fecinccart}" for="fecinccart" />
+                        <p:calendar id="fecinccart" pattern="dd/mmm/yyyy" value="#{carteleraController.selected.fecinccart}" 
+                                    title="#{vista.EditCarteleraTitle_fecinccart}"  showOn="button"/>
+                        
+                        <p:outputLabel value="#{vista.CreateCarteleraLabel_fecfincart}" for="fecfincart" />
+                        <p:calendar id="fecfincart" pattern="dd/mmm/yyyy" value="#{carteleraController.selected.fecfincart}" 
+                                    title="#{vista.EditCarteleraTitle_fecfincart}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carteleraController.create}" value="#{vista.Save}" update="display,:CarteleraListForm:datalist,:growl" oncomplete="handleSubmit(args,'CarteleraCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="CarteleraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculaEditDlg" widgetVar="PeliculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditPeliculaTitle}">
+            <h:form id="PeliculaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculaController.selected != null}">
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_titpel}" for="titpel" />
+                        <p:inputText id="titpel" value="#{peliculaController.selected.titpel}" 
+                                     title="#{vista.EditPeliculaTitle_titpel}" />
+                        
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_durcpel}" for="durcpel" />
+                        <p:inputText id="durcpel" value="#{peliculaController.selected.durcpel}" 
+                                     title="#{vista.EditPeliculaTitle_durcpel}" />
+                        
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_fecestnpel}" for="fecestnpel" />
+                        <p:calendar id="fecestnpel" pattern="dd/mmm/yyyy" value="#{peliculaController.selected.fecestnpel}" 
+                                    title="#{vista.EditPeliculaTitle_fecestnpel}"  showOn="button"/>
+                        
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_estpel}" for="estpel" />                        
+                         <p:selectOneRadio id="estpel" value="#{peliculaController.selected.estpel}">
+                            <f:selectItem itemLabel="Activo" itemValue="A" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="I" />
+                        </p:selectOneRadio>
+                        
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_paispel}" for="paispel" />
+                        <p:inputText id="paispel" value="#{peliculaController.selected.paispel}" 
+                                     title="#{vista.EditPeliculaTitle_paispel}" >
+                             <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_clsfpel}" for="clsfpel" />
+                        <p:inputText id="clsfpel" value="#{peliculaController.selected.clsfpel}" 
+                                     title="#{vista.EditPeliculaTitle_clsfpel}" >
+                             <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_idgen}" for="idgen" />
+                        <p:selectOneMenu id="idgen" value="#{peliculaController.selected.idgen}" >
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{generoController.itemsAvailableSelectOne}"
+                                           var="idgenItem"
+                                           itemValue="#{idgenItem}"/>
+                            <f:converter converterId="generoConverter"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculaController.update}" value="#{vista.Save}" update="display,:PeliculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeliculaEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="PeliculaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

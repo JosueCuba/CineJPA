@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateClienteTitle}">
+            <h:form id="ClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <p:outputLabel value="#{vista.CreateClienteLabel_nomcli}" for="nomcli" />
+                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" 
+                                     title="#{vista.CreateClienteTitle_nomcli}" >
+                            <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{vista.CreateClienteLabel_apepatcli}" for="apepatcli" />
+                        <p:inputText id="apepatcli" value="#{clienteController.selected.apepatcli}" 
+                                     title="#{vista.CreateClienteTitle_apepatcli}">
+                            <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{vista.CreateClienteLabel_apematcli}" for="apematcli" />
+                        <p:inputText id="apematcli" value="#{clienteController.selected.apematcli}"
+                                     title="#{vista.CreateClienteTitle_apematcli}">
+                            <p:keyFilter regEx="/[A-Za-z \s Ñ ñ Á á É é Í í Ó ó Ú ú]/"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{vista.CreateClienteLabel_sexcli}" for="sexcli" />                        
+                        <p:selectOneRadio  id="sexcli" value="#{clienteController.selected.sexcli}"  rendered="true" 
+                                           requiredMessage="#{vista.CreateClienteRequiredMessage_sexcli}">
+                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                            <f:selectItem itemLabel="Femenino" itemValue="F" />
+                        </p:selectOneRadio>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.create}" value="#{vista.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

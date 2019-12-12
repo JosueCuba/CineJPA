@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetalleventaCreateDlg" widgetVar="DetalleventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateDetalleventaTitle}">
+            <h:form id="DetalleventaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detalleventaController.selected != null}">
+                        <p:outputLabel value="#{vista.CreateDetalleventaLabel_idcomb}" for="idcomb" />
+                        <p:selectOneMenu id="idcomb" value="#{detalleventaController.selected.idcomb}" >
+                            <f:selectItems value="#{comboController.itemsAvailableSelectOne}"
+                                           var="idcombItem"
+                                           itemValue="#{idcombItem}"/>
+                            <f:converter converterId="comboConverter" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateDetalleventaLabel_idvent}" for="idvent" />
+                        <p:selectOneMenu id="idvent" value="#{detalleventaController.selected.idvent}" >
+                            <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"
+                                           var="idventItem"
+                                           itemValue="#{idventItem}"/>
+                            <f:converter converterId="ventaConverter" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{vista.CreateDetalleventaLabel_cantdetvent}" for="cantdetvent" />
+                        <p:inputText id="cantdetvent" value="#{detalleventaController.selected.cantdetvent}" 
+                                     title="#{vista.CreateDetalleventaTitle_cantdetvent}"  > 
+                            <p:keyFilter regEx="/[0-9]/"/>
+                        </p:inputText>
+
+
+                        <p:outputLabel value="#{vista.CreateDetalleventaLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{detalleventaController.selected.precio}" 
+                                     title="#{vista.CreateDetalleventaTitle_precio}"  > 
+                            <p:keyFilter regEx="/[0-9]/"/>
+                        </p:inputText>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detalleventaController.create}" value="#{vista.Save}" update="display,:DetalleventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetalleventaCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="DetalleventaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

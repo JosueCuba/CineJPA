@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionViewDlg" widgetVar="FuncionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewFuncionTitle}">
+            <h:form id="FuncionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{funcionController.selected != null}">
+                        <h:outputText value="#{vista.ViewFuncionLabel_horfunc}"/>
+                        <h:outputText value="#{funcionController.selected.horfunc}" title="#{vista.ViewFuncionTitle_horfunc}"/>
+                        <h:outputText value="#{vista.ViewFuncionLabel_idcart}"/>
+                        <h:outputText value="#{funcionController.selected.idcart}" title="#{vista.ViewFuncionTitle_idcart}"/>
+                        <h:outputText value="#{vista.ViewFuncionLabel_idpel}"/>
+                        <h:outputText value="#{funcionController.selected.idpel}" title="#{vista.ViewFuncionTitle_idpel}"/>
+                        <h:outputText value="#{vista.ViewFuncionLabel_idsal}"/>
+                        <h:outputText value="#{funcionController.selected.idsal}" title="#{vista.ViewFuncionTitle_idsal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vista.Close}" onclick="FuncionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

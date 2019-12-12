@@ -1,0 +1,1 @@
+CREATE SEQUENCE cinejpa.seq_gen_identity;

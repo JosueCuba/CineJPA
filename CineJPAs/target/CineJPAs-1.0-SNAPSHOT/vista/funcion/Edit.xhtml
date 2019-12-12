@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionEditDlg" widgetVar="FuncionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditFuncionTitle}">
+            <h:form id="FuncionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{funcionController.selected != null}">
+                        <p:outputLabel value="#{vista.EditFuncionLabel_horfunc}" for="horfunc" />
+                        <p:inputText id="horfunc" value="#{funcionController.selected.horfunc}" title="#{vista.EditFuncionTitle_horfunc}" />
+                        <p:outputLabel value="#{vista.EditFuncionLabel_idcart}" for="idcart" />
+                        <p:selectOneMenu id="idcart" value="#{funcionController.selected.idcart}" >
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{carteleraController.itemsAvailableSelectOne}"
+                                           var="idcartItem"
+                                           itemValue="#{idcartItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.EditFuncionLabel_idpel}" for="idpel" />
+                        <p:selectOneMenu id="idpel" value="#{funcionController.selected.idpel}" required="true" requiredMessage="#{vista.EditFuncionRequiredMessage_idpel}">
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{peliculaController.itemsAvailableSelectOne}"
+                                           var="idpelItem"
+                                           itemValue="#{idpelItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.EditFuncionLabel_idsal}" for="idsal" />
+                        <p:selectOneMenu id="idsal" value="#{funcionController.selected.idsal}" required="true" requiredMessage="#{vista.EditFuncionRequiredMessage_idsal}">
+                            <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
+                            <f:selectItems value="#{salaController.itemsAvailableSelectOne}"
+                                           var="idsalItem"
+                                           itemValue="#{idsalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{funcionController.update}" value="#{vista.Save}" update="display,:FuncionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FuncionEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="FuncionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
