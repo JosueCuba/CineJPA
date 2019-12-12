@@ -27,7 +27,7 @@
                         <p:outputLabel value="#{vista.CreateComboLabel_preccomb}" for="preccomb" />
                         <p:inputText id="preccomb" value="#{comboController.selected.preccomb}" 
                                      title="#{vista.CreateComboTitle_preccomb}" maxlength="5" >
-                            <p:keyFilter regEx="/[0-9_.]/"/>
+                            <p:keyFilter regEx="/[0-9]/"/>
                         </p:inputText>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{comboController.create}" value="#{vista.Save}" update="display,:ComboListForm:datalist,:growl" oncomplete="handleSubmit(args,'ComboCreateDialog');"/>
